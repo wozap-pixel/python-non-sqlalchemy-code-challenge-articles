@@ -2,7 +2,7 @@ class Article:
     all = []  
 
     def __init__(self, author, magazine, title):
-        if not isinstance(title, str)or not (5 <= len(title) <= 50):
+        if not isinstance(title, str) or not (5 <= len(title) <= 50):
             raise TypeError("Title must be a string")
         
         self.author = author
@@ -105,3 +105,27 @@ class Magazine:
         
         result = [author for author, count in authors_count.items() if count > 2]
         return None if not result else result
+
+
+
+if __name__ == "__main__":
+    
+    author1 = Author("John Doe")
+    author2 = Author("Jane Smith")
+
+    
+    magazine1 = Magazine("Tech Monthly", "Technology")
+    magazine2 = Magazine("Health Today", "Health")
+
+    
+    article1 = author1.add_article(magazine1, "Tech Trends 2024")
+    article2 = author2.add_article(magazine1, "AI and Society")
+    article3 = author1.add_article(magazine2, "Staying Fit in a Digital World")
+    article4 = author1.add_article(magazine1, "The Future of Programming")
+
+    
+    print("Author1's Articles:", [article.title for article in author1.articles()])
+    print("Magazines Author1 Contributed To:", [mag.name for mag in author1.magazines()])
+    print("Mag1's Contributors:", [author.name for author in magazine1.contributors()])
+    print("Mag1's Article Titles:", magazine1.article_titles())
+    print("Contributing Authors for Mag1:", [author.name for author in magazine1.contributing_authors()])
